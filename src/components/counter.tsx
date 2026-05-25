@@ -1,27 +1,55 @@
-import { Button } from '@/components/ui/button.tsx'
-import { Input } from '@/components/ui/input.tsx'
-import { Label } from '@/components/ui/label.tsx'
-import { useCountStore } from '@/store/store.ts'
+import { Button } from "@/components/ui/button.tsx"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card.tsx"
+import { Input } from "@/components/ui/input.tsx"
+import { Label } from "@/components/ui/label.tsx"
+import { useCountStore } from "@/store/store.ts"
 
 const Counter = () => {
-  const useCount = useCountStore();
+  const count = useCountStore((state) => state.count)
+  const step = useCountStore((state) => state.step)
+  const setStep = useCountStore((state) => state.setStep)
+  const increase = useCountStore((state) => state.increase)
+  const decrease = useCountStore((state) => state.decrease)
+  const clearCounter = useCountStore((state)=>state.clear)
+
   return (
-     <div className="flex flex-col gap-4">
-        <h1>Counter</h1>
-        <div className="rounded-md border px-2 py-1">{useCount.count}</div>
-        <Label>Increment or Decrement by </Label>
-        <Input
-          placeholder="Step..."
-          value={useCount.step}
-          onChange={(e) => useCount.setStep(parseInt(e.target.value))}
-        />
-        <div className="space-x-1">
-          <Button onClick={useCount.increase}>Increment</Button>
-          <Button onClick={useCount.decrease} variant={"destructive"}>
-            Decrement
-          </Button>
+    <Card className='lg:w-lg'>
+      <CardHeader>
+        <CardTitle>Counter</CardTitle>
+        <CardDescription>This counter count positive and negative both</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="rounded-md border px-2 py-1">{count}</div>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="step">Increment or Decrement by </Label>
+          <Input
+            id="step"
+            placeholder="Step..."
+            value={step}
+            onChange={(e) => {
+              const val = parseInt(e.target.value)
+              if (!isNaN(val)) setStep(val)
+            }}
+          />
         </div>
-      </div>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <div className='flex gap-2'>
+          <Button onClick={increase}>Increment</Button>
+        <Button onClick={decrease} variant={"destructive"}>
+          Decrement
+        </Button>
+        </div>
+        <Button onClick={clearCounter}>Clear</Button>
+      </CardFooter>
+    </Card>
   )
 }
 

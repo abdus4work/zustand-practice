@@ -17,9 +17,9 @@ import {
 import { Separator } from "@/components/ui/separator.tsx"
 import { useTodoStore, type Filter } from "@/store/todoStore.ts"
 import { useState } from "react"
+import Empty from '../assets/E-Commerce 03.svg'
 
 const Todo = () => {
-  const todos = useTodoStore((state) => state.todos)
   const addTodo = useTodoStore((state) => state.addTodo)
   const removeTodo = useTodoStore((state) => state.removeTodo)
   const toggleCompleted = useTodoStore((state) => state.toggleCompleted)
@@ -27,10 +27,11 @@ const Todo = () => {
   const setFilter = useTodoStore((state) => state.setFilter)
   const [todoTitle, setTodoTitle] = useState("")
 
-  const filteredTodos = todos.filter((todo) => {
-    if (filter == "active") return todo.isCompleted === false
-    else if (filter === "completed") return todo.isCompleted === true
-    else return todo
+  const filteredTodos = useTodoStore((state) => {
+    const { todos, filter } = state
+    if (filter === "active") return todos.filter((t) => !t.isCompleted)
+    if (filter === "completed") return todos.filter((t) => t.isCompleted)
+    return todos
   })
 
   function handleAddTodo() {
@@ -38,7 +39,7 @@ const Todo = () => {
     setTodoTitle("")
   }
   return (
-    <Card className="h-fit w-lg">
+    <Card className="h-fit w-full lg:w-lg">
       <CardHeader>
         <CardTitle>Todos</CardTitle>
       </CardHeader>
@@ -55,7 +56,10 @@ const Todo = () => {
             Add
           </Button>
         </div>
-        <Select defaultValue={filter} onValueChange={(v:Filter) => setFilter(v)}>
+        <Select
+          defaultValue={filter}
+          onValueChange={(v: Filter) => setFilter(v)}
+        >
           <SelectTrigger className="w-1/2">
             <SelectValue placeholder="All" />
           </SelectTrigger>
@@ -67,7 +71,9 @@ const Todo = () => {
         </Select>
         <Separator className="my-4" />
         <div className="h-80 scrollbar-thin scrollbar-thumb-emerald-300 space-y-2 overflow-y-scroll p-2">
-          {filteredTodos.map((item) => (
+          {filteredTodos.length===0? <div className='flex justify-center items-center text-2xl text-muted-foreground'>
+            <img src={Empty} />
+          </div> : filteredTodos.map((item) => (
             <TodoItem
               title={item.title}
               isCompleted={item.isCompleted}

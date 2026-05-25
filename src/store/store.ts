@@ -6,6 +6,7 @@ interface CounterState{
   decrease:()=>void
   step:number
   setStep:(step:number)=>void
+  clear:()=>void
 } 
 
 export const useCountStore = create<CounterState>((set)=>({
@@ -15,5 +16,6 @@ export const useCountStore = create<CounterState>((set)=>({
   decrease:()=>set((state)=>({count:state.count-state.step})),
   setStep:(step)=>set(()=>{
     return {step:step}
-  })
+  }),
+  clear:()=>set({count:0,step:1})
 }))
