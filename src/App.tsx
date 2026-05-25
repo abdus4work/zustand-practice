@@ -16,7 +16,7 @@ export function App() {
       <main className="flex min-h-svh flex-col justify-center gap-10 px-4 pt-22 pb-4 lg:px-20">
         <section className="flex flex-col items-center gap-2">
           <h2 className="text-3xl">Task - 1</h2>
-          <Button className="hidden md:block" onClick={themeStore.toggleTheme}>
+          <Button  onClick={themeStore.toggleTheme}>
             Toggle to {themeStore.theme == "light" ? "dark" : "light"}
           </Button>
         </section>
