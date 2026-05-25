@@ -20,6 +20,7 @@ import { useState } from "react"
 import Empty from '../assets/E-Commerce 03.svg'
 
 const Todo = () => {
+  const todos = useTodoStore((state)=>state.todos)
   const addTodo = useTodoStore((state) => state.addTodo)
   const removeTodo = useTodoStore((state) => state.removeTodo)
   const toggleCompleted = useTodoStore((state) => state.toggleCompleted)
@@ -27,11 +28,10 @@ const Todo = () => {
   const setFilter = useTodoStore((state) => state.setFilter)
   const [todoTitle, setTodoTitle] = useState("")
 
-  const filteredTodos = useTodoStore((state) => {
-    const { todos, filter } = state
-    if (filter === "active") return todos.filter((t) => !t.isCompleted)
-    if (filter === "completed") return todos.filter((t) => t.isCompleted)
-    return todos
+  const filteredTodos = todos.filter((item)=>{
+    if(filter==='active') return item.isCompleted===false
+    if(filter==='completed') return item.isCompleted===true
+    return item
   })
 
   function handleAddTodo() {
