@@ -12,7 +12,7 @@ const CartItem = ({ item }: CartItemProps) => {
   const addToCart = useCartStore((state) => state.addToCart)
   const removeFromCart = useCartStore((state) => state.removeFromCart)
   return (
-    <div className="flex h-26 w-full gap-3 rounded-md bg-slate-100">
+    <div className="flex h-30 w-full gap-3 rounded-md bg-slate-100 dark:text-black">
       <img
         src={item.product.image}
         alt={item.product.name}
