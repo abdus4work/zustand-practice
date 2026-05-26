@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx"
-import { Input } from "@/components/ui/input.tsx"
 import {
   Select,
   SelectContent,
@@ -18,6 +17,7 @@ import { Separator } from "@/components/ui/separator.tsx"
 import { useTodoStore, type Filter } from "@/store/todoStore.ts"
 import { useState } from "react"
 import Empty from '../assets/E-Commerce 03.svg'
+import { Input } from '@/components/ui/input'
 
 const Todo = () => {
   const todos = useTodoStore((state)=>state.todos)
