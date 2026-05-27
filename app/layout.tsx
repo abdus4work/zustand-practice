@@ -37,6 +37,7 @@ export default function RootLayout({
         geistMono.variable,
         "font-sans",
         inter.variable,
+        "scrollbar-thin scrollbar-thumb-emerald-400 scrollbar-track-transparent",
       )}
     >
       <ThemeProvider>
@@ -44,7 +45,7 @@ export default function RootLayout({
           <Navbar />
           <main
             className={
-              "flex min-h-svh flex-col gap-10 px-4 pt-22 pb-4 lg:px-20"
+              " flex min-h-svh flex-col gap-10 px-4 pt-22 pb-4 lg:px-20"
             }
           >
             {children}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 const Page = () => {
   return (
-    <div>
+    <div className={""}>
       Page
       {TASKS.map((task) => (
         <TaskCard key={task.id} task={task} />

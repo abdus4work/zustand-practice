@@ -7,16 +7,22 @@ import { usePathname } from "next/navigation";
 type Props = LinkProps &{
   title: string;
   href: string;
+  className?: string;
 };
-const LinkItem = ({ title, href,...props }: Props) => {
+const LinkItem = ({ title, href,className,...props }: Props) => {
   const pathname = usePathname()
   const isActive = href==='/'? pathname === href : pathname.startsWith(href);
   console.log(pathname);
   
   return (
     <Link
+      data-state={isActive ? "active" : "inactive"}
       href={href}
-      className={cn("cursor-pointer border-b-2 border-transparent hover:border-b-2 hover:border-emerald-300",isActive&&"border-emerald-300")}
+      className={cn(
+        "cursor-pointer border-b-2 border-transparent hover:border-b-2 hover:border-emerald-300 w-fit",
+        isActive && "border-emerald-300",
+        className
+      )}
     >
       {title}
     </Link>

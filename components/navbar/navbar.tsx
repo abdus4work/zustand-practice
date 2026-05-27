@@ -1,16 +1,9 @@
 import ThemeButton from "@/components/navbar/theme-button";
 import LinkItem from "@/components/navbar/link-item";
+import MobileMenu from "@/components/navbar/mobile-menu";
+import { NAV_ITEM } from "@/components/navbar/nav-item";
 
-const NAV_ITEM = [
-  {
-    title: "Home",
-    link: "/",
-  },
-  {
-    title: "Task",
-    link: "/task",
-  },
-];
+
 
 const Navbar = () => {
   return (
@@ -20,10 +13,11 @@ const Navbar = () => {
       </h1>
       <ul className="hidden gap-4 md:flex">
         {NAV_ITEM.map((item) => (
-          <LinkItem key={item.title} href={item.link} title={item.title}/>
+          <LinkItem key={item.title} href={item.link} title={item.title} />
         ))}
       </ul>
-      <div className="flex items-center gap-5">
+      <MobileMenu/>
+      <div className="flex items-center gap-5 hidden md:flex">
         <ThemeButton />
       </div>
     </nav>
