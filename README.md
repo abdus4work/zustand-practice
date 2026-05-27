@@ -1,79 +1,36 @@
-# Zustand - (A React state management library) practice
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Zustand is a small, fast and scalable barebones state-management solution using simplified flux principles. It has a minimal API, but it's got all the essentials for managing state in React applications.
+## Getting Started
 
-# Features:
+First, run the development server:
 
-  - **Simple API**: Easy to learn and use with minimal setup.
-  - **Lightweight & Fast**: Minimal overhead and efficient re-rendering.
-  - **Scalable**: Suitable for both small and large applications with proper store organization.
-  - **Flexible**: Works with any React architecture or pattern.
-  - **TypeScript Support**: Excellent built-in TypeScript support.
-  - **DevTools Integration**: Supports Redux DevTools through middleware.
-  - **SSR Support**: Can be used in server-rendered applications with proper state handling.
-  - **React Native Support**: Works seamlessly in React Native.
-  - **Growing Ecosystem**: Offers middleware and community-driven extensions.
-  - **Open Source**: Community-maintained and actively improved.
-
-## Installation
-You can install Zustand using npm or yarn: 
 ```bash
-npm install zustand
-```
-# Common patterns:
-### Async actions: 
-```js
-  sconst useStore = create((set) => ({
-  user: null,
-  fetchUser: async (id) => {
-    const user = await api.getUser(id)
-    set({ user })
-  },
-})) 
-```
-### Slice (splitting large stores into smaller ones):
-```js
-const useStore = create((...args) => ({
-  ...createAuthSlice(...args),
-  ...createCartSlice(...args),
-}))
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Middleware (persistence):
-```js
-import { persist } from 'zustand/middleware'
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-const useStore = create(persist(
-  (set) => ({ count: 0, increment: () => set(s => ({ count: s.count + 1 })) }),
-  { name: 'my-storage' } // saves to localStorage
-))
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-# Mental Model:
-> Store = State + Actions
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Zustand's mental model is based on the concept of a "store" that holds the application state. The store is created using the `create` function, which takes a function that defines the initial state and any actions that can modify that state. Components can then subscribe to the store to access the state and trigger actions. When an action is called, it updates the state, and any components subscribed to that part of the state will re-render with the new values. This allows for a simple and efficient way to manage state in React applications without the need for complex boilerplate or additional libraries. The store can be organized in a way that suits the application's needs, and it can be easily extended with middleware for additional functionality like logging or persistence. Overall, Zustand provides a straightforward and flexible approach to state management that can scale with the complexity of the application while maintaining a simple mental model for developers to understand and work with.
+## Learn More
 
-# Task List:
-These are the task that i have completed to practice Zustand
+To learn more about Next.js, take a look at the following resources:
 
-### **Task 1:** Counter App Build a counter with:
-- increment, decrement, reset buttons
-- A "step" input so the user can increment or decrement by custom amounts
-- Display the count
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### **Task 2:** Theme Toggle
-- Store theme: 'light' | 'dark' in Zustand
-- Toggle it with a button
-- Apply the theme to the page background/text color
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### **Task 3:** Todo List
-- Add, delete, and toggle todos
-- Filter by: All / Active / Completed
-- Store everything in Zustand (no local state for the list)
+## Deploy on Vercel
 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-
-[![npm version](https://img.shields.io/npm/v/zustand.svg)](https://www.npmjs.com/package/zustand)
-[![Build Status](https://travis-ci.com/pmndrs/zustand.svg?branch=master)](https://travis-ci.com/pmndrs/zustand)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/zustand.svg)](https://bundlephobia.com/result?p=zustand)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
