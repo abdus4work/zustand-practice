@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import github from "@/public/github.svg"
+import Link from "next/link";
 
 type Props = {
   task: Task;
@@ -28,10 +29,15 @@ const TaskCard = ({ task }: Props) => {
         <CardTitle>{task.title}</CardTitle>
         <CardDescription>{task.description}</CardDescription>
       </CardHeader>
-      <CardFooter>
+      <CardFooter className={"flex justify-between"}>
         <Button variant={'outline'} className={'flex justify-center items-center'}>
         <Image src={github} width={20} height={20} className={''} alt={'github'}/>
           <span> Code</span>
+        </Button>
+        <Button>
+          <Link href={`/task/${task.slug}`}>
+            View Demo
+          </Link>
         </Button>
       </CardFooter>
     </Card>
