@@ -7,7 +7,9 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import github from "@/public/github.svg"
+import github from "@/public/github.svg";
+import Link from "next/link";
+import { Task } from "@/features/task/type";
 
 type Props = {
   task: Task;
@@ -15,23 +17,27 @@ type Props = {
 
 const TaskCard = ({ task }: Props) => {
   return (
-    <Card className={"max-w-sm pt-0"}>
-      <div className={"w-full h-52 relative"}>
+    <Card className={"max-w-sm overflow-hidden pt-0 shadow-md"}>
+      <div className={"w-full aspect-video relative"}>
         <Image
-          src={"https://picsum.photos/id/4/200/300"}
+          src={task.previewImage==='' ? "/screenshots/placeholder-image.svg" : task.previewImage}
           fill
-          className={"object-cover"}
+          className={"object-contain  bg-emerald-200"}
           alt={task.title}
         />
       </div>
       <CardHeader>
         <CardTitle>{task.title}</CardTitle>
-        <CardDescription>{task.description}</CardDescription>
+        <CardDescription className={'line-clamp-3'}>{task.description}</CardDescription>
       </CardHeader>
-      <CardFooter>
-        <Button variant={'outline'} className={'flex justify-center items-center'}>
-        <Image src={github} width={20} height={20} className={''} alt={'github'}/>
-          <span> Code</span>
+      <CardFooter className={"flex justify-between"}>
+        <Button
+          className={
+            "bg-emerald-400 hover:bg-emerald-500 w-full cursor-pointer"
+          }
+          asChild
+        >
+          <Link href={`/task/${task.slug}`}>View Demo</Link>
         </Button>
       </CardFooter>
     </Card>
