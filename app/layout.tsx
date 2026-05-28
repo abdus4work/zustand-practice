@@ -45,7 +45,7 @@ export default function RootLayout({
           <Navbar />
           <main
             className={
-              " flex min-h-svh flex-col gap-10 px-4 pt-22 pb-4 lg:px-20"
+              " flex max-w-7xl mx-auto min-h-svh flex-col gap-10 px-4 pt-22 pb-4 "
             }
           >
             {children}

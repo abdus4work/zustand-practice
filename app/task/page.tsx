@@ -1,17 +1,15 @@
 import { Metadata } from "next";
-import TaskCard from "@/features/task/task-card";
 import { TASKS } from "@/features/task/task";
+import TaskList from "@/features/task/task-list";
 
 export const metadata: Metadata = {
-  title: "Zustand Practice | Task",
+  title: "Tasks | Zustand Practice",
 };
 const Page = () => {
   return (
-    <div className={""}>
-      Page
-      {TASKS.map((task) => (
-        <TaskCard key={task.id} task={task} />
-      ))}
+    <div className={'space-y-5'}>
+      <h1 className={"text-2xl mb-5"}>Zustand Tasks</h1>
+      <TaskList tasks={TASKS} />
     </div>
   );
 };
