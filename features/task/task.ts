@@ -3,6 +3,7 @@ import { Task } from "@/features/task/type";
 import ThemeButton from "@/components/navbar/theme-button";
 import Counter from "@/features/counter/counter";
 import Todo from "@/features/todo/todo";
+import Product from "@/features/product/product";
 export const TASKS: Task[] = [
   {
     id: 1,
@@ -112,5 +113,6 @@ export const useTodoStore= create<TodoState>((set)=>({
     description:
       "A shopping cart system built with Zustand to manage products, quantities, and cart updates through centralized state. This task demonstrates scalable global state management and synchronized UI updates without prop drilling.",
     previewImage: "",
+    component: Product
   },
 ];

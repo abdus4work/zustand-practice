@@ -22,7 +22,7 @@ const TaskCard = ({ task }: Props) => {
         <Image
           src={task.previewImage==='' ? "/screenshots/placeholder-image.svg" : task.previewImage}
           fill
-          className={"object-contain  bg-emerald-200"}
+          className={"object-cover "}
           alt={task.title}
         />
       </div>
